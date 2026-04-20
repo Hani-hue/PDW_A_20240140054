@@ -16,12 +16,24 @@
             margin-top: 50px;
             border: none;
         }
+
+        .ig-link {
+            color: #e1306c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .ig-link:hover {
+            color: #b02555;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container pb-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card main-card shadow-lg">
@@ -68,43 +80,46 @@
                                 </div>
                             </div>
 
-                            <button type="button" onclick="showResult()" class="btn btn-primary w-100 btn-lg">Tebak
-                                Sekarang!</button>
+                            <button type="button" onclick="showResult()"
+                                class="btn btn-primary w-100 btn-lg shadow-sm">Tebak Sekarang!</button>
                         </form>
 
                         <div id="result" class="mt-4" style="display:none;">
-                            <div class="alert alert-danger border-0 shadow-sm text-center">
+                            <div class="alert alert-warning border-0 shadow-sm text-center">
                                 <p id="summaryText" class="fs-5 fw-bold mb-0"></p>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="https://www.instagram.com/elly_sdump?igsh=ZGV5dHhwNHg4cXJw&utm_source=qr" target="_blank"
+                        class="ig-link">
+                        📸 follow ig ku donk
+                    </a>
+                    <br>
+                    <a href="index.html" class="btn btn-link text-muted mt-2 text-decoration-none small">← Kembali ke
+                        Login</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const user = localStorage.getItem('currentUser') || "Hani";
+        const user = localStorage.getItem('currentUser') || "Teman";
         document.getElementById('welcomeMsg').innerText = `Selamat Datang, ${user}!`;
 
         function showResult() {
-            // 1. Validasi Dropdown
             const flavor = document.getElementById('flavor').value;
-
-            // 2. Validasi Radio Button
             const foodType = document.querySelector('input[name="foodType"]:checked');
-
-            // 3. Validasi Checkbox (minimal satu diceklis)
             const toppings = document.querySelectorAll('.topping:checked');
 
-            // Cek apakah ada yang kosong
             if (flavor === "" || !foodType || toppings.length === 0) {
                 alert("Eitss! Isi semua data dulu ya, jangan ada yang kosong.");
-                document.getElementById('result').style.display = 'none'; // Sembunyikan hasil jika gagal
-                return; // Berhenti di sini, jangan lanjut ke bawah
+                document.getElementById('result').style.display = 'none';
+                return;
             }
 
-            // Jika semua sudah diisi, baru munculkan ini
             const resultString = "Boleh pinjam seratus?";
             document.getElementById('summaryText').innerText = resultString;
             document.getElementById('result').style.display = 'block';
